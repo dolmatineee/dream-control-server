@@ -1,5 +1,6 @@
 package com.example.domain.usecase
 
+import com.auth0.jwt.JWTVerifier
 import com.example.authentication.JwtService
 import com.example.data.model.UserModel
 import com.example.domain.repository.UserRepository
@@ -14,5 +15,7 @@ class UserUseCase(
     suspend fun findUserByEmail(email: String) = repositoryImpl.getUserByEmail(email = email)
 
     fun generateToken(userModel: UserModel): String = jwtService.generateToken(user = userModel)
+
+    fun getJWTVerifier(): JWTVerifier = jwtService.getVerifier()
 
 }

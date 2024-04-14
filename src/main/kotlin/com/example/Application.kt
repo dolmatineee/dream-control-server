@@ -1,5 +1,10 @@
 package com.example
 
+import com.example.authentication.JwtService
+import com.example.data.model.repository.DreamRepositoryImpl
+import com.example.data.model.repository.UserRepositoryImpl
+import com.example.domain.usecase.DreamUseCase
+import com.example.domain.usecase.UserUseCase
 import com.example.plugins.*
 import com.example.plugins.DatabasesFactory.initializationDatabase
 import io.ktor.server.application.*
@@ -12,8 +17,15 @@ fun main() {
 }
 
 fun Application.module() {
+
+    val jwtService = JwtService()
+    val userRepository = UserRepositoryImpl()
+    val dreamRepository = DreamRepositoryImpl()
+    val userUseCase = UserUseCase(userRepository, jwtService)
+    val dreamUseCase = DreamUseCase(dreamRepository)
+
     initializationDatabase()
-    configureSecurity()
+    configureSecurity(userUseCase)
     configureMonitoring()
     configureSerialization()
 //    configureDatabases()
