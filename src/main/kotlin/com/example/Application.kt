@@ -13,9 +13,9 @@ fun main() {
 
 fun Application.module() {
     initializationDatabase()
-    /*configureSecurity()
+    configureSecurity()
     configureMonitoring()
     configureSerialization()
-    configureDatabases()
-    configureRouting()*/
+//    configureDatabases()
+//    configureRouting()
 }
