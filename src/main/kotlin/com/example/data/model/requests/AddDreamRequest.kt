@@ -1,13 +1,12 @@
-package com.example.data.model
+package com.example.data.model.requests
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class DreamModel(
-    val id: Int,
-    val owner: Int,
+data class AddDreamRequest(
+    val id: Int? = null,
     val dreamTitle: String,
     val dreamDescription: String,
     val dreamDate: String,
-    val isVerified: Boolean = false
+    val isVerified: Boolean = false,
 )
